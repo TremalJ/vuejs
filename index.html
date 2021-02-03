@@ -24,6 +24,11 @@
             Cantidad: 
             <span style="color:red">{{cantidad }}</span>
         </h2>
+        <hr>
+        <h2>Mis servicios disponibles:</h2>
+        <ul>
+            <li v-for="(item, index) in servicios" :key="index"> {{ index+1 }} - {{ item }}</li>
+        </ul>
     </div>
     <script src="main.js"></script>
     <script >
