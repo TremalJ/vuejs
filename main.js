@@ -4,7 +4,8 @@ const app = Vue.createApp({
         return {
             titulo: 'Este es un hola mundo con VUEJS',
             cantidad: 500,
-            // cantidad: 'htttp://youtube.com',
+            enlace: 'http://youtube.com',
+            estado: true
         }
     }
 })
