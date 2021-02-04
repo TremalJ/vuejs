@@ -5,8 +5,14 @@
     <div v-for="(servicio , index) in servicios" :key="index">
         {{ index + 1 }} - {{ servicio }}
     </div>
-    <AccionSaldo texto="Aumentar Saldo"/>
-    <AccionSaldo texto="Disminuir Saldo"/>
+    <AccionSaldo 
+        texto="Aumentar Saldo"
+        @accion="aumentar"
+    />
+    <AccionSaldo 
+        texto="Disminuir Saldo"
+        @accion="disminuir"
+    />
 </template>
 
 <script>
@@ -32,6 +38,9 @@ export default {
             this.saldo = this.saldo + 100;
         },
         disminuir() {
+            if(this.saldo === 0) {
+                alert('saldo agotado!');
+            }
             this.saldo = this.saldo - 100;
         }
     }
