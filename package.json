@@ -2,9 +2,9 @@
   "name": "vuejs",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "serve": "vite preview",
     "build": "vite build",
-    "serve": "vite preview"
+    "dev": "vite"
   },
   "dependencies": {
     "vue": "^3.0.5"
@@ -12,6 +12,7 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.1.2",
     "@vue/compiler-sfc": "^3.0.5",
-    "vite": "^2.0.0-beta.50"
+    "vite": "^2.0.0-beta.50",
+    "vue-cli-plugin-vue-next": "~0.1.4"
   }
 }
