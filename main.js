@@ -20,7 +20,14 @@ const app = Vue.createApp({
             if( this.cantidad <= 0) {
                 this.desactivar = true;
             }
-            
+        }
+    },
+    computed: {
+        colorCantidad() {
+            return this.cantidad > 500 ? 'text-success' : 'text-danger'
+        },
+        mayusculasTexto() {
+            return this.titulo.toUpperCase();
         }
     }
 })
