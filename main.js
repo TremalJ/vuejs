@@ -7,12 +7,23 @@ const app = Vue.createApp({
             enlace: 'http://youtube.com',
             estado: true,
             cuenta: false,
-            servicios: ["transferencias", "gatos" , "activos", "cheques"]
+            servicios: ["transferencias", "gatos" , "activos", "cheques"],
+            desactivar: false,
+            activar: false,
         }
     },
     methods: {
         agregarSaldo() {
             this.cantidad = this.cantidad + 100
+        },
+        disminuirSaldo() {
+            console.log(this.desactivar);
+            console.log(this.cantidad);
+            this.cantidad = this.cantidad - 100
+            if( this.cantidad <= 0) {
+                this.desactivar = true;
+            }
+            
         }
     }
 })

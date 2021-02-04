@@ -29,8 +29,9 @@
         <ul>
             <li v-for="(item, index) in servicios" :key="index"> {{ index+1 }} - {{ item }}</li>
         </ul>
-        <button v-on:click="agregarSaldo">Agregar saldo</button>
-        <button @click="agregarSaldo">Agregar saldo</button>
+        <button v-on:click="agregarSaldo" :enabled="activar" >Agregar saldo</button>
+        <button @click="agregarSaldo" :enabled="activar" >Agregar saldo</button>
+        <button @click="disminuirSaldo" :disabled="desactivar" >Disminuir saldo</button>
     </div>
     <script src="main.js"></script>
     <script >
