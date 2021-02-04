@@ -9,5 +9,10 @@ const app = Vue.createApp({
             cuenta: false,
             servicios: ["transferencias", "gatos" , "activos", "cheques"]
         }
+    },
+    methods: {
+        agregarSaldo() {
+            this.cantidad = this.cantidad + 100
+        }
     }
 })
