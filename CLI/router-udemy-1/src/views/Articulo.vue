@@ -6,6 +6,9 @@
 <script>
 import Titulo from '../components/Titulo.vue'
 export default {
+    props: {
+    id: String
+  },
   components: { Titulo },
 }
 </script>
