@@ -1,10 +1,12 @@
 <template>
-  blog
+  <Titulo texto="Título de mi blog" />
 </template>
 
 <script>
-export default {
+import Titulo from '../components/Titulo.vue'
 
+export default {
+  components: { Titulo },
 }
 </script>
 
