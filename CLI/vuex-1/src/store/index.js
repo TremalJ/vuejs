@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: { // objeto único que contiene el estado de aplicación.
-    contador: 50,
+    contador: 100,
   },
   mutations: { //
   },
