@@ -6,6 +6,9 @@
     >{{titulo}} :  {{contador}}</h1>
     <button @click="accionIncrementar">+</button>
     <disminuir />
+    <hr>
+    <boton-accion :estado="true" />
+    <boton-accion :estado="false" />
   </div>
 </template>
 
@@ -13,10 +16,12 @@
 // @ is an alias to /src
 import {mapState, mapMutations, mapActions} from 'vuex';
 import Disminuir from '../components/Disminuir.vue';
+import BotonAccion from '../components/BotonAccion.vue';
 export default {
   name: 'Home',
   components: {
-    Disminuir    
+    Disminuir,
+    BotonAccion    
   },
   data() {
     return {
