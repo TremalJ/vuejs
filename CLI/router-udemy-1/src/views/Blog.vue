@@ -1,8 +1,10 @@
 <template>
   <Titulo texto="Título de mi blog" />
   <!-- <button @click="consumirApi">Consumir API</button> -->
-  <div v-for="user in arrayBlog" :key="user.id"> 
-    {{user.id}} - {{user.title}}
+  <div v-for="article in arrayBlog" :key="article.id"> 
+    <router-link :to="`/blog/${article.id}`" >
+      {{article.id}} - {{article.title}}
+    </router-link>
   </div>
 </template>
 
