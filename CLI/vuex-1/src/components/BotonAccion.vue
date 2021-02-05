@@ -1,8 +1,13 @@
 <template>
-    <button>{{textoBoton}}</button>
+    <button
+        @click="accionBoton({estado: estado, numero: 15})"
+    >
+        {{textoBoton}}
+    </button>
 </template>
 
 <script>
+import {mapAction, mapActions} from 'vuex'
 export default {
     props: {
         estado: Boolean
@@ -11,6 +16,9 @@ export default {
         textoBoton(){
             return this.estado ? 'Aumentar' : 'Disminuir'
         }
+    },
+    methods: {
+        ...mapActions(['accionBoton'])
     }
 }
 </script>
