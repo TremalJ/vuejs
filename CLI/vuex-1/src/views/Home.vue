@@ -9,7 +9,7 @@
 
 <script>
 // @ is an alias to /src
-import {mapState} from 'vuex';
+import {mapState, mapMutations} from 'vuex';
 export default {
   name: 'Home',
   components: {
@@ -25,6 +25,12 @@ export default {
     colorContador(){
       return [this.contador > 100 ? {'color' : 'green'} : {'color' : 'red'}]
     }
+  },
+  mutations: {
+
+  },
+  methods: {
+    ...mapMutations(['incrementar']),
   }
 }
 </script>
