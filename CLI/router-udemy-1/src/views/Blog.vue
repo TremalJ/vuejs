@@ -1,6 +1,6 @@
 <template>
   <Titulo texto="Título de mi blog" />
-  <button @click="consumirApi">Consumir API</button>
+  <!-- <button @click="consumirApi">Consumir API</button> -->
   <div v-for="user in arrayBlog" :key="user.id"> 
     {{user.id}} - {{user.title}}
   </div>
@@ -26,6 +26,9 @@ export default {
         console.log(error);
       }
     }
+  },
+  created() {
+    this.consumirApi();
   }
 }
 </script>
