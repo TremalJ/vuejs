@@ -4,16 +4,19 @@
     <h1
       :style="colorContador"
     >{{titulo}} :  {{contador}}</h1>
+    <button @click="accionIncrementar">+</button>
+    <disminuir />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import {mapState, mapMutations} from 'vuex';
+import {mapState, mapMutations, mapActions} from 'vuex';
+import Disminuir from '../components/Disminuir.vue';
 export default {
   name: 'Home',
   components: {
-    
+    Disminuir    
   },
   data() {
     return {
@@ -30,7 +33,8 @@ export default {
 
   },
   methods: {
-    ...mapMutations(['incrementar']),
+    ...mapMutations(['incrementar','decrementar']),
+    ...mapActions(['accionIncrementar','accionDecrementar']),
   }
 }
 </script>
