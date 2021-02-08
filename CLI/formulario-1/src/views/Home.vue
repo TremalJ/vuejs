@@ -56,7 +56,12 @@
        placeholder="Introduce número"
       />
     </div>  
-    <button class="btn mt-2 btn-dark" type="submit">Procesar</button>
+    <button 
+      class="btn mt-2 btn-dark" 
+      type="submit"
+    >
+    Procesar
+    </button>
     <hr>
     <p> 
       {{tarea}}
@@ -84,6 +89,11 @@ export default {
   methods:  {
     procesarFormulario() {
       console.log(this.tarea)
+      if(this.tarea.nombre.trim() === "") {
+        console.log("campo vacío")
+        return;
+      }
+      console.log("campo NO vacío")
     }
   }
 }
