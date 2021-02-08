@@ -87,22 +87,24 @@ export default {
   },
   methods:  {
     procesarFormulario() {
-      console.log(this.tarea)
       if(this.tarea.nombre.trim() === "") {
-        console.log("campo vacío")
         this.desactivado = true;
-        console.log(this.desactivado)
         return;
       }
-      console.log("campo NO vacío")
       this.desactivado = false;
-      console.log(this.desactivado)
+      //Limpieza de campos rápida:
+      this.tarea = {
+        nombre:  '',
+        categorias: [],
+        estado: '',
+        numero: 0
+      }
     }
   },
   computed: {
       activarBoton() {
        return this.tarea.nombre.trim() === ""  ? true : false;
       }
-  }
-
+  },
+}
 </script>
