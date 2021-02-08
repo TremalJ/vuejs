@@ -49,6 +49,16 @@
         <label for="radio-2">Relax</label>
       </div>
     </div>
+    <div class="mt-2">
+      <input 
+      type="number"
+       name="" 
+       id=""
+       class='form-control'
+       v-model="tarea.numero"
+       placeholder="Introduce número"
+      />
+    </div>  
     <hr>
     <p> 
       {{tarea}}
@@ -68,7 +78,8 @@ export default {
       tarea: {
         nombre:  '',
         categorias: [],
-        estado: ''
+        estado: '',
+        numero: 0
       }
     }
   }
