@@ -59,6 +59,7 @@
     <button 
       class="btn mt-2 btn-dark" 
       type="submit"
+      :disabled="activarBoton"
     >
     Procesar
     </button>
@@ -70,8 +71,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
 export default {
   name: 'Home',
   components: {
@@ -91,10 +90,19 @@ export default {
       console.log(this.tarea)
       if(this.tarea.nombre.trim() === "") {
         console.log("campo vacío")
+        this.desactivado = true;
+        console.log(this.desactivado)
         return;
       }
       console.log("campo NO vacío")
+      this.desactivado = false;
+      console.log(this.desactivado)
     }
+  },
+  computed: {
+      activarBoton() {
+       return this.tarea.nombre.trim() === ""  ? true : false;
+      }
   }
-}
+
 </script>
