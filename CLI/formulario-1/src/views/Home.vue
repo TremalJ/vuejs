@@ -4,10 +4,33 @@
       type="text"
       class="form-control my-2"
       placeholder="Ingrese Nombre"
-      v-model="texto"
+      v-model="tarea.texto"
     >
+
+    <div clas="form-check form-check-inline">
+      <input 
+      type="checkbox" 
+      name="form-check-input" 
+      id="check-1"
+      v-model="tarea.categorias"
+      value="javascript"
+      >
+      <label for="check-1" class="form-check-input">Javascript</label>
+    </div>
+
+    <div clas="form-check form-check-inline">
+      <input 
+      type="checkbox" 
+      name="form-check-input" 
+      id="check-2"
+      v-model="tarea.categorias"
+      value="nodejs"
+      >
+      <label for="check-2" class="form-check-input">NodeJS</label>
+    </div>
+    <hr>
     <p> 
-      {{texto.tarea}}
+      {{tarea}}
     </p>
   </form>
 </template>
@@ -22,7 +45,8 @@ export default {
   data() {
     return {
       tarea: {
-        texto:  ''
+        nombre:  '',
+        categorias: []
       }
     }
   }
