@@ -28,6 +28,27 @@
       >
       <label for="check-2" class="form-check-input">NodeJS</label>
     </div>
+
+    <div class="mt-2">
+      <div clas="form-check form-check-inline">
+        <input 
+        type="radio" 
+        name="" 
+        id="radio-1"
+        value="urgente"
+        v-model="tarea.estado"
+        />
+        <label for="radio-1">Urgente</label>
+        <input 
+        type="radio" 
+        name="" 
+        id="radio-2"
+        value="relax"
+        v-model="tarea.estado"
+        />
+        <label for="radio-2">Relax</label>
+      </div>
+    </div>
     <hr>
     <p> 
       {{tarea}}
@@ -46,7 +67,8 @@ export default {
     return {
       tarea: {
         nombre:  '',
-        categorias: []
+        categorias: [],
+        estado: ''
       }
     }
   }
