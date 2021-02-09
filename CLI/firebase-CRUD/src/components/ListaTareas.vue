@@ -9,20 +9,20 @@
         <th scope="col">Número</th>
         <th scope="col">Acción</th>
     </tr>
-    <tr v-for="item in tareas" :key="item.id">
-        <td>{{ item.id }} </td>
-        <td>{{ item.nombre }} </td>
-        <td>{{item.categorias.join(',')}}</td>
-        <td>{{ item.estado }} </td>
-        <td>{{ item.numero }} </td>
+    <tr v-for="tarea in tareas" :key="tarea.id">
+        <td>{{ tarea.id }} </td>
+        <td>{{ tarea.nombre }} </td>
+        <td>{{tarea.categorias.join(',')}}</td>
+        <td>{{ tarea.estado }} </td>
+        <td>{{ tarea.numero }} </td>
         <td>
-            <button @click="deleteTareas(item.id)" class="btn-danger">Eliminar</button>
+            <button @click="deleteTareas(tarea.id)" class="btn-danger">Eliminar</button>
             <router-link 
                 class="btn btn-warning ml-2 btn-sm"
                 :to="{
                     name: 'Edit',
                     params: {
-                        id: item.id
+                        id: tarea.id
                     }
                 }"
             >
@@ -35,16 +35,13 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
     computed: {
         ...mapState(['tareas']),
     },
     methods: {
-        ...mapActions(['deleteTareas', 'cargarLocalStorage']),
-    },
-    created(){
-        this.cargarLocalStorage();
+        ...mapActions(['deleteTareas']),
     }
 }
 </script>

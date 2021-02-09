@@ -18,7 +18,6 @@ export default createStore({
     },
     set(state, payload) {
       state.tareas.push(payload);
-      localStorage.setItem('tareas', JSON.stringify(state.tareas))
     },
     edit(state, payload) {
       if(!state.tareas.find(item => item.id === payload )) {
@@ -31,42 +30,71 @@ export default createStore({
     update(state, payload) {
       state.tareas = state.tareas.map(item => item.id === payload.id ? payload : item);
       router.push('/');
-      localStorage.setItem('tareas', JSON.stringify(state.tareas))
     },
     delete(state, payload) {
       state.tareas = state.tareas.filter(item => item.id !== payload);
-      localStorage.setItem('tareas', JSON.stringify(state.tareas))
     }
   },
   actions: {
-    cargarLocalStorage({ commit }) {
+    async cargarTareas({ commit }) {
+      try {
+        const res = await fetch('https://crud-udemy-fd599.firebaseio.com//tareas.json')
+        const dataDB = await res.json()
+        const arrayTareas = []
+        for (let id in dataDB){
+          arrayTareas.push(dataDB[id])
+        }
+        commit('cargar', arrayTareas)
 
+      } catch (error) {
+        console.log(error)
+      }
     },
     async setTareas({ commit }, tarea){
       try {
         const res = await fetch(`https://crud-udemy-fd599.firebaseio.com/tareas/${tarea.id}.json`, {
-          method: 'POST',
+          method: 'PUT', //PUT en lugar de POST, para no crear id de Firebase cada vez y usar ID de TAREA
           headers: {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify(tarea)
         })
         
-        const dataDB = await res.json();
-        console.log(dataDB);
+        const dataDB = await res.json()
+        commit('set', tarea);
       } catch (error) {
         console.log(error);
       }
-      commit('set', tarea);
     },
     editTarea({ commit }, id){
       commit('edit', id);
     },
-    updateTarea({ commit }, tarea){
-      commit('update', tarea);
+    async updateTarea({ commit }, tarea){
+      try {
+        const res = await fetch(`https://crud-udemy-fd599.firebaseio.com/tareas/${tarea.id}.json`, {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(tarea)
+        })
+
+        const dataDB = res.json();
+        commit('update', dataDB);
+      } catch (error) {
+        console.log(error);
+      }
     },
-    deleteTareas({ commit }, id){
-      commit('delete', id);
+    async deleteTareas({ commit }, id){
+      try {
+        await fetch(`https://crud-udemy-fd599.firebaseio.com/tareas/${id}.json`, {
+          method: 'DELETE',
+        })
+
+        commit('delete', id);
+      } catch (error) {
+        console.log(error);
+      }
     }
   },
   modules: {
