@@ -41,7 +41,10 @@ export default {
         ...mapState(['tareas']),
     },
     methods: {
-        ...mapActions(['deleteTareas']),
+        ...mapActions(['deleteTareas', 'cargarLocalStorage']),
+    },
+    created(){
+        this.cargarLocalStorage();
     }
 }
 </script>

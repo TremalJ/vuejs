@@ -1,4 +1,5 @@
 <template>
+  <h1>Formularios con VueJS</h1>
   <form @submit.prevent="procesarFormulario">
     <Input :tarea="tarea" />
     <hr>

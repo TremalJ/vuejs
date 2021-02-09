@@ -4,10 +4,14 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import NavBar from './components/NavBar.vue'
 export default {
   components: {
     NavBar
+  },
+  methods:{
+    ...mapActions(['localStorage'])
   }
 }
 </script>
