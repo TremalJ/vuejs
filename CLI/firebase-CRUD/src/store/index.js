@@ -40,15 +40,23 @@ export default createStore({
   },
   actions: {
     cargarLocalStorage({ commit }) {
-      if(localStorage.getItem('tareas')){
-        const tareas = JSON.parse(localStorage.getItem('tareas'));
-        commit('cargar', tareas)
-        return;
-      }
 
-      localStorage.setItem('tareas', JSON.stringify([]))
     },
-    setTareas({ commit }, tarea){
+    async setTareas({ commit }, tarea){
+      try {
+        const res = await fetch(`https://crud-udemy-fd599.firebaseio.com/tareas/${tarea.id}.json`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(tarea)
+        })
+        
+        const dataDB = await res.json();
+        console.log(dataDB);
+      } catch (error) {
+        console.log(error);
+      }
       commit('set', tarea);
     },
     editTarea({ commit }, id){
