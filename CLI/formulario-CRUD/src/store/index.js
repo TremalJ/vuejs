@@ -14,7 +14,6 @@ export default createStore({
   mutations: {
     set(state, payload) {
       state.tareas.push(payload);
-      console.log(state.tareas)
     }
   },
   actions: {

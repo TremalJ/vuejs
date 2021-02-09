@@ -78,5 +78,8 @@ export default {
 </script>
 
 <style>
+  label.form-check-input {
+    margin-left:15px;
+  }
 
 </style>
