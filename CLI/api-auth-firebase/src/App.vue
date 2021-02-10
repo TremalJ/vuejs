@@ -13,10 +13,8 @@
       Navbar
     },
     methods:{
-      ...mapActions(['cargarTareas'])
     },
     created(){
-      this.cargarTareas()
     }
   }
 </script>

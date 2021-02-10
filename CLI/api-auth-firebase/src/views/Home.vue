@@ -34,7 +34,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['tareas', 'setTareas']),
+    ...mapActions(['tareas', 'setTareas', 'cargarTareas']),
     procesarFormulario(){
       if(this.tarea.nombre.trim() === ''){
         return
@@ -45,5 +45,8 @@ export default {
       this.tarea = {id: '', nombre: '', categorias: [], estado: '', numero: 0}
     }
   },
+  created() {
+    this.cargarTareas();
+  }
 }
 </script>
