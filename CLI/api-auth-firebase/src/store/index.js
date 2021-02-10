@@ -16,7 +16,6 @@ export default createStore({
   mutations: {
     setUser(state, payload) {
       state.user = payload;
-      console.log(state.user);
     },
     cargar(state, payload) {
       state.tareas = payload;
@@ -54,7 +53,6 @@ export default createStore({
 
         const userDB = await res.json();
         if(userDB.error) {
-          console.log(userDB.error)
           return;
         }
         commit('setUser', userDB);
@@ -91,7 +89,6 @@ export default createStore({
         for (let id in dataDB){
           arrayTareas.push(dataDB[id])
         }
-        console.log(res);
         commit('cargar', arrayTareas)
 
       } catch (error) {
@@ -148,6 +145,7 @@ export default createStore({
   },
   getters: {
     usuarioAutenticado(state) {
+      console.log(state.user)
       return !!state.user
     }
   },
