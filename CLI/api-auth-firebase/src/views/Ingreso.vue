@@ -30,8 +30,8 @@ import { mapActions } from 'vuex';
 export default {
     data(){
         return {
-            email: 'tomate@mail.com',
-            pass1: '123123123',
+            email: '',
+            pass1: '',
         }
     },
     computed: {

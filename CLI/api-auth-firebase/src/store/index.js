@@ -43,6 +43,7 @@ export default createStore({
     cerrarSesion({ commit }) {
       commit('setUser', null);
       router.push('/login');
+      localStorage.removeItem('usuario');
     },
     async ingresarUsuario({ commit }, usuario) {
       try {
@@ -61,6 +62,7 @@ export default createStore({
         }
         commit('setUser', userDB);
         router.push('/');
+        localStorage.setItem('usuario', JSON.stringify(userDB));
       } catch (error) {
         console.log(error)
       }
@@ -86,6 +88,11 @@ export default createStore({
       }
     },
     async cargarTareas({ commit, state }) {
+      if(localStorage.getItem('usuario')) {
+        commit('setUser', JSON.parse(localStorage.getItem('usuario')))
+      } else {
+        return commit('setUser', null)
+      }
       try {
         const res = await fetch(`https://crud-udemy-fd599.firebaseio.com/tareas/${state.user.localId}.json?auth=${state.user.idToken}`)
         const dataDB = await res.json()
@@ -149,7 +156,6 @@ export default createStore({
   },
   getters: {
     usuarioAutenticado(state) {
-      console.log(state.user)
       return !!state.user
     }
   },
