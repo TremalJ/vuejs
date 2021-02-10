@@ -40,6 +40,10 @@ export default createStore({
     }
   },
   actions: {
+    cerrarSesion({ commit }) {
+      commit('setUser', null);
+      router.push('/login');
+    },
     async ingresarUsuario({ commit }, usuario) {
       try {
         const res = await fetch('https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDAK4l04jqkpRiPBBNTXEamiymNwRMVlLA',{

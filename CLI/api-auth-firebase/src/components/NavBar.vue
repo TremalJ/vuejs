@@ -1,5 +1,4 @@
 <template>
-{{usuarioAutenticado}}
     <div class="navbar navbar-dark bg-dark">
         <router-link  to="/" class="navbar-brand">
             Formularios
@@ -29,6 +28,7 @@
             <button
                 class="btn btn-dark" 
                 v-if="usuarioAutenticado"
+                @click="cerrarSesion()"
             >
                 Cerrar Sesión
             </button>
@@ -37,10 +37,13 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
     computed: {
-        ...mapGetters['usuarioAutenticado']
+        ...mapGetters(['usuarioAutenticado'])
+    },
+    methods: {
+        ...mapActions(['cerrarSesion'])
     }
 }
 </script>
