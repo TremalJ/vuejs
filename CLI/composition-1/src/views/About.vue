@@ -1,6 +1,9 @@
 <template>
   <div class="about">
     <Titulo :contador="contador" :style="{ color: color }" />
+    <Btn :textoBoton="'Aumentar'" @accion="aumentar" />
+    <Btn :textoBoton="'Disminuir'" @accion="disminuir" />
+    <hr />
     <button @click="aumentar">+</button>
     <button @click="disminuir">-</button>
     <hr />
@@ -11,10 +14,12 @@
 
 <script>
 import Titulo from "../components/Titulo";
+import Btn from "../components/Btn";
 import { computed, ref } from "vue";
 export default {
   components: {
-    Titulo
+    Titulo,
+    Btn
   },
   setup() {
     let contador = ref(0);
