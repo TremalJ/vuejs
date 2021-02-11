@@ -26,6 +26,15 @@ export default createStore({
     filtrarRegion({commit, state}, region) {
       const filtro = state.paises.filter(pais => pais.region.includes(region));
       commit('setPaisesFiltrados', filtro)
+    },
+    filtrarNombre({commit, state}, texto) {
+      const textoCliente = texto.toLowerCase();
+      const filtro = state.paises.filter(pais => {
+        if(pais.name.toLowerCase().includes(textoCliente)){
+          return pais;
+        }
+      })
+      commit('setPaisesFiltrados', filtro)
     }
   },
   getters: {

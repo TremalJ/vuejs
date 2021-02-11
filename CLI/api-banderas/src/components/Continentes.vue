@@ -18,7 +18,6 @@ export default {
 
 
     const filtro = (region) =>  {
-      console.log(region)
       store.dispatch('filtrarRegion', region)
     }
 
