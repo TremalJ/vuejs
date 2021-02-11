@@ -24,7 +24,6 @@ export default createStore({
       }
     },
     filtrarRegion({commit, state}, region) {
-      console.log(state);
       const filtro = state.paises.filter(pais => pais.region.includes(region));
       commit('setPaisesFiltrados', filtro)
     }
