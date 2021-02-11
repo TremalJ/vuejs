@@ -25,11 +25,11 @@ export default {
             return store.getters.topPaisesPoblacion
         })
         
-        onMounted(() => {
-            store.dispatch('getPaises'); //despacha acción de la store
-            console.log(store)
+        onMounted(async() => {
+            await store.dispatch('getPaises'); //despacha acción de la store
+            await store.dispatch('filtrarRegion', 'Americas');
         })
-
+        console.log(paises)
         return { paises }
     }
 }
