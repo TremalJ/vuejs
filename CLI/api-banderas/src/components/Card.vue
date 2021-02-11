@@ -2,9 +2,12 @@
   <div class="card">
       <div class="card-body">
           <h5>{{pais.name}}</h5>
+          <p class="text-center">
+              <img :src="pais.flag" :alt="`bandera-${pais.name}`" class="img-fluid w-50">
+          </p>
           <p class="card-text">
               <span class="badge badge-dark d-block mb-1">nativeName: {{ pais.nativeName }}</span>
-              <span class="badge badge-dark d-block mb-1">population: {{ pais.population }}</span>
+              <span class="badge badge-info d-block mb-1">population: {{ numeroFormato(pais.population) }}</span>
               <span class="badge badge-dark d-block mb-1">capital: {{ pais.capital }}</span>
               <span class="badge badge-dark d-block mb-1">region: {{ pais.region }}</span>
           </p>
@@ -14,6 +17,13 @@
 
 <script>
 export default {
-    props: ['pais']
+    props: ['pais'],
+    setup(){
+        const numeroFormato = (num) => {
+            return new Intl.NumberFormat("de-DE").format(num)
+        }
+
+        return { numeroFormato }
+    }
 }
 </script>
