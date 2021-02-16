@@ -10,11 +10,14 @@
       <b-navbar-nav>
         <b-nav-item :to="{ name: 'Home'}" exact>Home</b-nav-item>
         <b-nav-item :to="{ name: 'About'}" exact>About</b-nav-item>
+        <b-nav-item :to="{ name: 'Grid'}" exact>Grid</b-nav-item>
       </b-navbar-nav>
       </b-collapse>
       </b-container>
       </b-navbar> 
-    <router-view/>
+      <b-container>
+        <router-view/>
+      </b-container>
     </div>
   </div>
 </template>
