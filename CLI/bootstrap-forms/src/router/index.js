@@ -29,6 +29,26 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/Grid.vue')
     }
+  },
+  {
+    path: '/card',
+    name: 'Card',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Card.vue')
+    }
+  },
+  {
+    path: '/form',
+    name: 'Form',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: function () {
+      return import(/* webpackChunkName: "about" */ '../views/Form.vue')
+    }
   }
 ]
 
