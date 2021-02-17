@@ -1,8 +1,11 @@
 <template>
   <div id="app">
     <div id="nav">
-      <Register />
+        <router-link to="/">Inicio</router-link> | 
+        <router-link to="/register">Registro</router-link>
+        <div></div>
     </div>
+    <router-view></router-view>
   </div>
 </template>
 
