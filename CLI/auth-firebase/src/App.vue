@@ -3,7 +3,6 @@
     <div id="nav">
       <Register />
     </div>
-    <router-view/>
   </div>
 </template>
 
