@@ -62,6 +62,9 @@ export default new Vuex.Store({
         console.log(error)
         commit('setError', error)
       });
+    },
+    checkUser({commit}, user) {
+      commit('setUser',user)
     }
   },
   modules: {
