@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-        <router-link to="/">Inicio</router-link> | 
-        <router-link to="/register">Registro</router-link> | 
-        <router-link to="/login">Acceso</router-link> |
-        <button class="btn btn-dark" @click="closeSession()">Cerrar sesion</button>
+        <router-link to="/" v-if="existUser">Inicio</router-link> <span v-if="!existUser"> | </span>
+        <router-link v-if="!existUser" to="/register">Registro</router-link><span v-if="!existUser"> | </span> 
+        <router-link v-if="!existUser" to="/login">Acceso</router-link><span v-if="!existUser"> | </span>
+        <button class="btn btn-dark" @click="closeSession()"  v-if="existUser">Cerrar sesion</button>
         <div></div>
     </div>
     <router-view></router-view>
@@ -12,13 +12,15 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
-import Register from './views/Register'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'Start', 
   methods: {
       ...mapActions(['closeSession'])
     },
+    computed:{
+      ...mapGetters(['existUser'])
+    }
 }
 </script>
 
