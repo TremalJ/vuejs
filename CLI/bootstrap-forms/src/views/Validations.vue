@@ -6,7 +6,7 @@
         type="email" 
         placeholder="Ingresa un email" 
         class="form-control m-2"
-        v-model="$v.email.$model"
+        v-model.lazy="$v.email.$model"
         :class="{'is-invalid': $v.email.$error}"
         >
         <p class="text-danger" v-if="!$v.email.email">El email no es correcto</p>
@@ -14,7 +14,7 @@
         <!-- <p>{{$v.email}}</p> -->
         <input type="password" 
         placeholder="ingresa contraseña"  
-        v-model="$v.password.$model"
+        v-model.lazy="$v.password.$model"
         class="form-control m-2" 
         :class="{'is-invalid': $v.password.$error}"
         >
@@ -22,7 +22,7 @@
         <!-- <p>{{$v.password}}</p> -->
         <input 
         type="password" 
-        v-model="$v.repeatPassword.$model" 
+        v-model.lazy="$v.repeatPassword.$model" 
         placeholder="repite contraseña"  
         class="form-control m-2" 
         :class="{'is-invalid': $v.repeatPassword.$error}"
@@ -34,15 +34,15 @@
         type="submit"
         :disabled="$v.$invalid"
         >Enviar</b-button>
-        <p>{{$v.$invalid}}</p>
-        <p>{{$v}}</p>
+        <!-- <p>{{$v.$invalid}}</p>
+        <p>{{$v}}</p> -->
     </form>
     </div>
   
 </template>
 
 <script>
-import {required,email, sameAs , minLength } from 'vuelidate/lib/validators'
+import {required,email, sameAs , minLength, Lazy } from 'vuelidate/lib/validators'
 export default {
     name: 'Validations',
     data(){
