@@ -3,7 +3,8 @@
     <div id="nav">
         <router-link to="/">Inicio</router-link> | 
         <router-link to="/register">Registro</router-link> | 
-        <router-link to="/login">Acceso</router-link>
+        <router-link to="/login">Acceso</router-link> |
+        <button class="btn btn-dark" @click="closeSession()">Cerrar sesion</button>
         <div></div>
     </div>
     <router-view></router-view>
@@ -11,11 +12,13 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import Register from './views/Register'
 export default {
-  components:{
-    Register
-  }
+  name: 'Start', 
+  methods: {
+      ...mapActions(['closeSession'])
+    },
 }
 </script>
 

@@ -17,9 +17,11 @@
 import {mapActions, mapState} from 'vuex';
 export default {
     name: 'Login',
-    components:{
-        email: '',
-        password: '',
+     data(){
+        return {
+            email: '',
+            password: '',
+        }
     },
     methods:{
         ...mapActions(['loginUser'])

@@ -52,6 +52,16 @@ export default new Vuex.Store({
         console.log(error)
         commit('setError', error)
       })
+    },
+    closeSession({commit}){
+      auth.signOut()
+      .then(() => {
+        router.push('/login');
+      })
+      .catch(error => {
+        console.log(error)
+        commit('setError', error)
+      });
     }
   },
   modules: {
