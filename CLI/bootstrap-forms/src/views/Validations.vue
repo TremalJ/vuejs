@@ -1,12 +1,10 @@
 <template>
     <div class="container m-3">
     <h1>Vuelidate</h1>
-    <form >
+    <form @submit.prevent="submit()" >
         <input 
         type="email" 
         placeholder="Ingresa un email" 
-        name="" 
-        id="" 
         class="form-control m-2"
         v-model="$v.email.$model"
         :class="{'is-invalid': $v.email.$error}"
@@ -19,7 +17,7 @@
         v-model="$v.password.$model"
         class="form-control m-2" 
         :class="{'is-invalid': $v.password.$error}"
-        name="" id="">
+        >
         <p class="text-danger" v-if="!$v.password.minLength">* Mínimo 6 caracteres</p>
         <!-- <p>{{$v.password}}</p> -->
         <input 
@@ -28,11 +26,16 @@
         placeholder="repite contraseña"  
         class="form-control m-2" 
         :class="{'is-invalid': $v.repeatPassword.$error}"
-        name="" 
-        id=""
         >
         <p class="text-danger" v-if="!$v.repeatPassword.sameAsPassword">* Las contraseñas no coinciden</p>
         <!-- <p>{{$v.repeatPassword}}</p> -->
+        <b-button 
+        variant="primary m-2" 
+        type="submit"
+        :disabled="$v.$invalid"
+        >Enviar</b-button>
+        <p>{{$v.$invalid}}</p>
+        <p>{{$v}}</p>
     </form>
     </div>
   
@@ -58,6 +61,24 @@ export default {
         repeatPassword:{
             sameAsPassword: sameAs('password')
         } 
-    }
+    },
+    methods: {
+        submit() {
+        console.log('submit!')
+        this.$v.$touch()
+        if (this.$v.$invalid) {
+            this.submitStatus = 'ERROR'
+             console.log('ERROR EN EL ENVÍO DEL FORMULARIO!')
+        } else {
+            // do your submit logic here
+            // this.submitStatus = 'PENDING'
+            // setTimeout(() => {
+            // this.submitStatus = 'OK'
+            // }, 500)
+            console.log('Enviando informacion'+ this.$v.password.$model+" "+this.$v.email.$model)
+            console.log('FORMULARIO ENVIADO CORRECTAMENTE!')
+        }
+        }
+    },
 }
 </script>
