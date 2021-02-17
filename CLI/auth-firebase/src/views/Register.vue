@@ -42,7 +42,7 @@ export default {
       computed:{
         ...mapState(['error']),
         desactivar(){
-          return this.password === this.password2 && this.password.trim() !== ''
+          return this.password === this.password2 && this.password.trim() !== '' && this.password.length > 5
         }
       }
 }
