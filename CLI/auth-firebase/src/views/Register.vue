@@ -19,8 +19,8 @@
           class="form-control m-1" 
           placeholder="Repita su contraseña"
         >
-        <button class="btn btn-info">Enviar</button>
-        <p>{{error.message}}</p>
+        <button class="btn btn-info" :disabled="!desactivar">Enviar</button>
+        <p>{{error ? error.message : null}}</p>
       </form>
   </h1>
 </template>
@@ -40,7 +40,10 @@ export default {
         ...mapActions(['createUser'])
       },
       computed:{
-        ...mapState(['error'])
+        ...mapState(['error']),
+        desactivar(){
+          return this.password === this.password2 && this.password.trim() !== ''
+        }
       }
 }
 </script>
