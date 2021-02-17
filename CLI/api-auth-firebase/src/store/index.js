@@ -33,6 +33,7 @@ export default createStore({
       }
     },
     setUser(state, payload) {
+      console.log(payload);
       state.user = payload;
     },
     cargar(state, payload) {
@@ -101,6 +102,7 @@ export default createStore({
           console.log(userDB.error)
           return commit('setError', userDB.error.message);
         }
+        console.log(userDB);
         commit('setUser', userDB);
         commit('setError', null);
         router.push('/');
