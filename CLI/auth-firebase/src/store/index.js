@@ -11,7 +11,7 @@ export default new Vuex.Store({
     error: null,
     tasks: [],
     task: {nombre: '', id: ''},
-    carga: true,
+    carga: false,
   },
   mutations: {
     setUser (state, payload) {
@@ -58,18 +58,18 @@ export default new Vuex.Store({
       .then(res => {
         let tarea = res.data();
         tarea.id = res.id;
-        console.log(tarea)
         commit('setTask', tarea);
       })
     },
     agregarTarea({commit, state}, nombreTarea) {
+      commit('cargarFirebase', true);
       db.collection(state.user.email).add({
         nombre: nombreTarea
       })
       .then(res => {
-        console.log(nombreTarea)
         commit('setTask', nombreTarea)
         router.push('/');
+        commit('cargarFirebase', false);
       })
     },
     editarTarea({commit, state}, tarea) {
@@ -77,12 +77,10 @@ export default new Vuex.Store({
         nombre: tarea.nombre
       })
       .then(() => {
-        console.log('tarea editada')
         router.push('/');
       })
     },
     eliminarTarea({commit, state} , idTarea) {
-      console.log(idTarea)
       try {
         db.collection(state.user.email).doc(idTarea).delete()
         .then(() => {
@@ -147,10 +145,8 @@ export default new Vuex.Store({
   getters:{
     existUser(state) { 
       if(!state.user) {
-        console.log("no hay usuario")
         return false
       } else{
-        console.log("EXISTE usuario")
         return true;
       }
     }

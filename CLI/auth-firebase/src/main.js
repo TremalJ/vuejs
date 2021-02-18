@@ -5,7 +5,11 @@ import store from './store'
 
 import {auth} from '../firebase.js'
 
+import Vuelidate from 'vuelidate';
+
 Vue.config.productionTip = false
+
+Vue.use(Vuelidate)
 
 auth.onAuthStateChanged(user => {
   if(user){
