@@ -12,6 +12,7 @@ export default new Vuex.Store({
     tasks: [],
     task: {nombre: '', id: ''},
     carga: false,
+    texto: '',
   },
   mutations: {
     setUser (state, payload) {
@@ -34,6 +35,10 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    Buscador({commit, state}, payload){
+      console.log(payload);
+      state.texto = payload.toLowerCase();
+    },
     getTareas({ commit, state}){
 
       commit('cargarFirebase', true);
@@ -149,6 +154,16 @@ export default new Vuex.Store({
       } else{
         return true;
       }
+    },
+    arrayFiltrado(state){
+      let arregloFiltrado = []
+      for(let task of state.tasks) {
+        let nombre = task.nombre.toLowerCase()
+        if(nombre.indexOf(state.texto) >= 0) {
+            arregloFiltrado.push(task)
+        }
+      }
+      return arregloFiltrado;
     }
   },
   modules: {

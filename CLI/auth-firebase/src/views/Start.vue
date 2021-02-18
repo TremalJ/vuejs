@@ -10,8 +10,17 @@
             <PulseLoader />
         </div>
 
+        <form  @submit.prevent="Buscador">
+            <input
+            type="text" 
+            placeholder="Buscar tarea..."
+            v-model="texto"
+            v-on:keyup="Buscador(texto)"
+            >
+        </form>
+        <br>
         <ul v-if="!carga">
-            <li v-for="(item,index) in tasks" :key="index" class="list-group-item ">
+            <li v-for="(item,index) in arrayFiltrado" :key="index" class="list-group-item ">
                 {{ item.id }} - {{ item.nombre }}
                 <router-link 
                         class="btn btn-warning ml-2 btn-sm"
@@ -31,18 +40,24 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 export default {
     name: 'Start',
+    data(){
+        return {
+            texto: ''
+        }
+    },
     components:{
         PulseLoader
     },
     computed:{
-        ...mapState(['user','tasks', 'carga'])
+        ...mapState(['user','tasks', 'carga']),
+        ...mapGetters(['arrayFiltrado'])
     },
     methods:{
-        ...mapActions(['getTareas', 'eliminarTarea'])
+        ...mapActions(['getTareas', 'eliminarTarea', 'Buscador'])
     },
     created(){
         this.getTareas();
