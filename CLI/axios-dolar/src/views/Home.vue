@@ -17,7 +17,7 @@
       </v-card>
       <v-card color="error" dark>
         <v-card-text class="display-1 text-xs-center">
-          {{valor}} - {{fecha}} - {{maximo}}
+          {{valor}}
         </v-card-text>
         </v-card> 
     </v-flex>
@@ -27,6 +27,7 @@
 <script>
 // @ is an alias to /src
 import axios from 'axios'
+import {mapMutations} from 'vuex'
 export default {
   name: 'Home',
   components: {
@@ -35,19 +36,40 @@ export default {
     return{
       fecha: '',
       minimo: '1984',
-      maximo: new Date().toISOString().substr(0,10), //Máximo fecha actual
+      // maximo: new Date().toISOString().substr(0,10), //Máximo fecha actual
+      maximo: '2050',
+      valor: ''
     }
   },
   methods:{
+    ...mapMutations(['mostrarLoading', 'ocultarLoading']),
     async getDolar(dia){
       let arrayFecha = dia.split('-')
       let ddmmyyy = arrayFecha[2]+'-'+arrayFecha[1]+'-'+arrayFecha[0]
-      let datos = await axios.get(`https://mindicador.cl/api/dolar/${dia}`)
-      console.log(datos.data.serie[0].valor)
-      this.valor = await datos.data.serie[0].valor
+      
+      try {
+        this.mostrarLoading({titulo: 'Accediendo a información', color:'secondary'})
+
+        let datos = await axios.get(`https://mindicador.cl/api/dolar/${ddmmyyy}`)
+        console.log(datos.data.serie.length)
+        if(datos.data.serie.length > 0) {
+          this.valor = await datos.data.serie[0].valor 
+        } else {
+          this.valor = "Sin Valor"
+        }
+      } catch (error) {
+        console.log(error)
+      }finally{
+        this.ocultarLoading()
+      }
     }
   },
   created(){
+    if(this.fecha === '') {
+      var f = new Date();
+      this.fecha = f.getFullYear()+'-'+(f.getMonth() +1) + "-" + f.getDate();
+      console.log(f.getFullYear()+'-'+(f.getMonth() +1) + "-" + f.getDate())
+    }
     this.getDolar(this.fecha);
   }
 }
