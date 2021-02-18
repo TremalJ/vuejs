@@ -7,13 +7,16 @@
             <v-date-picker 
               v-model="fecha"
               full-width
+              locale="es-c1"
+              :min="minimo"
+              :max="maximo"
             ></v-date-picker>
           </v-row>
         </template>
       </v-card>
       <v-card color="error" dark>
         <v-card-text class="display-1 text-xs-center">
-          {{fecha}}
+          {{fecha}} - {{maximo}}
         </v-card-text>
         </v-card> 
     </v-flex>
@@ -29,7 +32,9 @@ export default {
   },
   data(){
     return{
-      fecha: ''
+      fecha: '',
+      minimo: '1984',
+      maximo: new Date().toISOString().substr(0,10), //Máximo fecha actual
     }
   }
 }
