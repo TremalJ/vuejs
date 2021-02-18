@@ -10,6 +10,7 @@
               locale="es-c1"
               :min="minimo"
               :max="maximo"
+              @change="getDolar(fecha)"
             ></v-date-picker>
           </v-row>
         </template>
@@ -39,13 +40,15 @@ export default {
   },
   methods:{
     async getDolar(dia){
+      let arrayFecha = dia.split('-')
+      let ddmmyyy = arrayFecha[2]+'-'+arrayFecha[1]+'-'+arrayFecha[0]
       let datos = await axios.get(`https://mindicador.cl/api/dolar/${dia}`)
       console.log(datos.data.serie[0].valor)
       this.valor = await datos.data.serie[0].valor
     }
   },
   created(){
-    this.getDolar('01-02-2019');
+    this.getDolar(this.fecha);
   }
 }
 </script>
