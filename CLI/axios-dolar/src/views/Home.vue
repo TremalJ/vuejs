@@ -1,16 +1,21 @@
 <template>
   <v-layout :wrap="true">
-    <v-flex md6>
-      <h1>Hola mundo!</h1> 
-    </v-flex>
-    <v-flex md3>
-      <h1>Hola mundo!</h1> 
-    </v-flex>
-    <v-flex md3>
-      <h1>Hola mundo!</h1> 
-    </v-flex>
-    <v-flex md3>
-      <h1>Hola mundo!</h1> 
+    <v-flex xs12>
+      <v-card>
+        <template>
+          <v-row justify="center">
+            <v-date-picker 
+              v-model="fecha"
+              full-width
+            ></v-date-picker>
+          </v-row>
+        </template>
+      </v-card>
+      <v-card color="error" dark>
+        <v-card-text class="display-1 text-xs-center">
+          {{fecha}}
+        </v-card-text>
+        </v-card> 
     </v-flex>
   </v-layout>  
 </template>
@@ -21,6 +26,11 @@
 export default {
   name: 'Home',
   components: {
+  },
+  data(){
+    return{
+      fecha: ''
+    }
   }
 }
 </script>
