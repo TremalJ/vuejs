@@ -35,34 +35,33 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    Buscador({commit, state}, payload){
-      console.log(payload);
+    Buscador({state}, payload){
       state.texto = payload.toLowerCase();
     },
     getTareas({ commit, state}){
-
       commit('cargarFirebase', true);
-
-      const tareas = [];
-      db.collection(state.user.email).get()
-      .then(res => {
-        res.forEach(element => {
-          let tarea = element.data();
-          tarea.id = element.id;
-          tareas.push(tarea);
-          // setTimeout(() => {
-          //   commit('cargarFirebase', false);
-          // }, 2000)
-          commit('cargarFirebase', false);
-        });        
-      })  
-      commit('setTasks', tareas);     
+        const tareas = [];
+        db.collection(state.user.email).get()
+        .then(res => {
+          res.forEach(element => {
+            let tarea = element.data();
+            tarea.id = element.id;
+            tareas.push(tarea);
+            commit('cargarFirebase', false);
+          });        
+        }) 
+        .catch(error => {
+          console.log(error)
+          commit('setError', error)
+        });
+        commit('setTasks', tareas);   
     },
     getTarea({commit, state}, idTarea) {
       db.collection(state.user.email).doc(idTarea).get()
       .then(res => {
         let tarea = res.data();
         tarea.id = res.id;
+        console.log(tarea)
         commit('setTask', tarea);
       })
     },

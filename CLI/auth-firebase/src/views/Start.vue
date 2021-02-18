@@ -7,7 +7,7 @@
         <router-link :to="{ name: 'Add'}"><button class="btn btn-success">Agregar</button></router-link>
         <br><br>
         <div v-if="carga" class="text-center mt-5">
-            <PulseLoader />
+            <pulse-loader :loading="carga"></pulse-loader>
         </div>
 
         <form  @submit.prevent="Buscador">

@@ -2,13 +2,12 @@
   <div  class="card-header" >
       <h1>
           <form @submit.prevent="editarTarea(task)" class="form-group">
-          <textarea  class="form-control form-control-sm" v-model="$v.tarea.nombre.$model" />
+          <textarea  class="form-control form-control-sm" v-model="$v.task.nombre.$model" />
            <br><br>
-          <button type="submit" class="btn btn-warning" :disabled="$v.tarea.nombre.$invalid"> <i class="fas fa-save fa-2x"></i> Editar</button>
+          <button type="submit" class="btn btn-warning" :disabled="$v.task.$invalid" > Editar</button>
           </form>
-          <small class="text-danger d-block" v-if="!$v.tarea.nombre.required">Campo requerido</small>
-          <small class="text-danger d-block" v-if="!$v.tarea.nombre.minLength">Mínimo 5 caracteres</small>
-          <p>{{$v.tarea.nombre}}</p>
+          <small class="text-danger d-block" v-if="!$v.task.nombre.required">Campo requerido</small>
+          <!-- <p>{{$v.task}}</p> -->
       </h1>
   </div>
 </template>
@@ -34,7 +33,7 @@ export default {
         ...mapState(['task'])
     },
     validations:{
-        tarea: {  
+        task: {  
             nombre:{ required}
          }
     }
