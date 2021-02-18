@@ -2,7 +2,7 @@
   <div id="app">
     <div id="nav">
         <router-link to="/" v-if="existUser">Inicio</router-link> <span v-if="!existUser"> | </span>
-        <!-- <router-link v-if="!existUser" to="/register">Registro</router-link><span v-if="!existUser"> | </span>  -->
+        <router-link v-if="!existUser" to="/register">Registro</router-link><span v-if="!existUser"> | </span> 
         <!-- sangonera:tomaca -->
         <router-link v-if="!existUser" to="/login">Acceso</router-link><span v-if="!existUser"> | </span>
         <button class="btn btn-dark" @click="closeSession()"  v-if="existUser">Cerrar sesion</button>
@@ -14,6 +14,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'Start', 
   methods: {
