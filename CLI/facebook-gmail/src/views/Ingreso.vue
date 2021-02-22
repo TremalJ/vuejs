@@ -37,6 +37,7 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['nuevoUsuario']),
         facebook(){
             console.log('facebook')
             var provider = new firebase.auth.FacebookAuthProvider();
@@ -61,6 +62,8 @@ export default {
                     uid:user.uid,
                     foto: user.photoURL
                 }
+
+                this.nuevoUsuario(usuario)
 
                 //Guardar en Firestore:
                 await db.collection('usuarios').doc(usuario.uid).set(
