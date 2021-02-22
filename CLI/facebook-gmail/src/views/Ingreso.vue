@@ -30,6 +30,8 @@
 
 <script>
 import {firebase, db} from "../../firebase.js"
+import {mapMutations} from 'vuex'
+import router from '../router'
 export default {
     data(){
         return{
@@ -69,6 +71,8 @@ export default {
                 await db.collection('usuarios').doc(usuario.uid).set(
                     usuario
                 )
+
+                router.push({name: 'home'})
 
                 console.log('Usuario guardado en DB')
             } catch (error) {

@@ -7,14 +7,15 @@ import '@babel/polyfill'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
-import {auth} from '../firebase'
+import {firebase} from '../firebase'
 
 firebase.auth().onAuthStateChanged(function(user) {
+  console.log(user)
   if (user) {
     // User is signed in.
+    console.log(user)
     store.dispatch('setUsuario', user)
 
-    console.log(displayName)
     new Vue({
       router,
       store,
@@ -23,6 +24,12 @@ firebase.auth().onAuthStateChanged(function(user) {
     }).$mount('#app')
   } else {
     // No user is signed in.
+    new Vue({
+      router,
+      store,
+      vuetify,
+      render: h => h(App)
+    }).$mount('#app')
   }
 });
 Vue.config.productionTip = false

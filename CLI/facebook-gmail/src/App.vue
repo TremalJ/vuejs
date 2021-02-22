@@ -2,10 +2,11 @@
   <v-app>
     <v-toolbar>
       <v-toolbar-title class="headline text-uppercase" >
+        <router-link :to="{name:'home'}"></router-link>
        <span>Vue</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn>
+      <v-btn @click="cerrarSesion">
         <span>Cerrar sesión</span>
         <v-icon>fas fa-address-book</v-icon>
       </v-btn>
@@ -19,17 +20,19 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
   },
 
   data: () => ({
     //
   }),
+  methods:{
+    ...mapActions(['cerrarSesion'])
+  }
 };
 </script>
