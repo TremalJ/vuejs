@@ -10,7 +10,7 @@
                     <v-btn block color="error" @click="google">
                         <v-icon>fab fa-google</v-icon><span class="ml-4">Google</span>
                     </v-btn>
-                    <v-btn block color="info">
+                    <v-btn block color="info" @click="facebook">
                         <v-icon>fab fa-facebook-f </v-icon><span class="ml-4">Facebook</span>
                     </v-btn>
                 </v-card-text>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {firebase, db, auth} from "../../firebase.js"
+import {firebase, db} from "../../firebase.js"
 export default {
     data(){
         return{
@@ -37,9 +37,17 @@ export default {
         }
     },
     methods:{
-        async google(){
-            
+        facebook(){
+            console.log('facebook')
+            var provider = new firebase.auth.FacebookAuthProvider();
+            this.ingresar(provider)
+        },
+        google(){
+            console.log('google')
             var provider = new firebase.auth.GoogleAuthProvider();
+            this.ingresar(provider)
+        },
+        async ingresar(provider){
             firebase.auth().languageCode = 'es';
 
             try {
@@ -63,28 +71,6 @@ export default {
             } catch (error) {
                 console.log(error)
             }
-
-            // await firebase.auth()
-            // .signInWithPopup(provider)
-            // .then((result) => {
-            //     /** @type {firebase.auth.OAuthCredential} */
-            //     var credential = result.credential;
-            //     console.log(credential)
-            //     // This gives you a Google Access Token. You can use it to access the Google API.
-            //     var token = credential.accessToken;
-            //     // The signed-in user info.
-                
-            //     // ...
-            // }).catch((error) => {
-            //     // Handle Errors here.
-            //     var errorCode = error.code;
-            //     var errorMessage = error.message;
-            //     // The email of the user's account used.
-            //     var email = error.email;
-            //     // The firebase.auth.AuthCredential type that was used.
-            //     var credential = error.credential;
-            //     // ...
-            // });
         }
     }
 }
