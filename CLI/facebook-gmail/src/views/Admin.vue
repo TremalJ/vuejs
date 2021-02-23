@@ -1,8 +1,9 @@
 <template>
-  <v-layout row wrap>
-      <v-flex xs6>
+  <v-container>
+  <v-layout>
+      <v-flex justify-center>
           <v-card
-            class="xs-text-center"
+            class="text-center"
           >
              <v-card-text>
                  <v-avatar>
@@ -37,6 +38,7 @@
           </v-card>
       </v-flex>
   </v-layout>
+  </v-container>
 </template>
 
 <script>

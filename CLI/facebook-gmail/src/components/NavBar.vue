@@ -3,8 +3,8 @@
   <v-app-bar app>
     <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title class="headline text-uppercase" >
-        <router-link :to="{name:'home'}"></router-link>
-       <span>Vue</span>
+        <router-link :to="{name:'home'}"><span>Vue</span></router-link>
+       
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn @click="cerrarSesion">
@@ -53,8 +53,9 @@ import { mapActions, mapState } from 'vuex'
         drawer:true,
         items: [
           { title: 'Dashboard', icon : 'fas fa-address-card', to: 'home'},
-          { title: 'Account', icon : 'fas fa-address-card',  to: 'ingreso'},
-          { title: 'Admin', icon : 'fas fa-address-card',  to: 'admin'},
+          // { title: 'Account', icon : 'fas fa-address-card',  to: 'ingreso'},
+          { title: 'Admin', icon : 'fas fa-user-shield',  to: 'admin'},
+          { title: 'Chat', icon : 'fas fa-comments',  to: 'chat'},
         ]
       }
     },
