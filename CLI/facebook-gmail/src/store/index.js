@@ -8,7 +8,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    usuario: ''
+    usuario: '',
+    mensaje: ''
   },
   mutations: {
     nuevoUsuario(state, payload) {
@@ -18,6 +19,9 @@ export default new Vuex.Store({
       }else {
         state.usuario = payload
       }
+    },
+    nuevoMensaje(state, payload) {
+        state.mensaje = payload;
     }
   },
   actions: {
@@ -41,17 +45,31 @@ export default new Vuex.Store({
   
           db.collection('usuarios').doc(usuario.uid).set(
               usuario
-          )
+          ).then(res =>
+           {
+             console.log(res)
+           }
+          ).catch(error => {
+            console.log(error);
+          })
+
           console.log("Usuario guardado en DB")
           commit('nuevoUsuario',usuario)
         }
       })      
     },
-    cerrarSesion({commit}, payload){
+    cerrarSesion({commit}){
       auth.signOut();
       commit('nuevoUsuario',null)
       router.push({name: 'ingreso'})
-    } 
+    } ,
+    setMensaje({commit}, payload) {
+      db.collection('chat').add(
+        payload
+      );
+
+      commit('nuevoMensaje',payload.mensaje)
+    }
   },
   modules: {
   }

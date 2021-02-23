@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapMutations, mapActions, mapState } from 'vuex'
 export default {
     name:'chat',
     data(){
@@ -49,15 +49,21 @@ export default {
         ...mapState(['usuario'])
     },
     methods:{
+        ...mapMutations(['nuevoMensaje']),
+        ...mapActions(['setMensaje']),
         enviarMensaje(){
             if(this.valido) {
                 console.log('Enviaste el mensaje', this.mensaje)
+                const chatUsuario = {
+                    uid: this.usuario.uid,
+                    mensaje: this.mensaje
+                }    
+                this.setMensaje(chatUsuario);
             }else {
                 console.log('no escribiste nada')
             }
         }
     }
-
 }
 </script>
 

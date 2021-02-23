@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import {firebase, db} from "../../firebase.js"
+import {firebase} from "../../firebase.js"
 import {mapActions, mapMutations} from 'vuex'
 import router from '../router'
 export default {
@@ -57,20 +57,10 @@ export default {
             try {
                 const result = await firebase.auth().signInWithPopup(provider);
                 const user = result.user;
-                console.log(user);
-                //Guardar datos usuario:
-                // const usuario = {
-                //     nombre: user.displayName,
-                //     email: user.email,
-                //     uid:user.uid,
-                //     foto: user.photoURL
-                // }
 
                 this.setUsuario(user)
 
-                //Guardar en Firestore:
-                
-
+                //Guardar en Firestore:              
                 router.push({name: 'home'})
 
                 console.log('Usuario guardado en DB')
