@@ -14,8 +14,3 @@ export default {
   layout: 'nosotros'
 }
 </script>
-
-<style>
-
-
-</style>

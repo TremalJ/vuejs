@@ -3,11 +3,16 @@
     <div class="row">
       <div class="col-md-3">
         <div v-for="(item, index) in articulos" :key="index">
-          <h2>
+          <div class="card-body">
             <nuxt-link :to="`/blog/${item.id}`">
-              {{ item.titulo }}
+              <h1>
+                {{ item.title }}
+              </h1>
             </nuxt-link>
-          </h2>
+            <p>
+              {{ item.body }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -18,13 +23,12 @@
 export default {
   data () {
     return {
-      articulos: [
-        { id: 1, titulo: 'Titulo #1' },
-        { id: 2, titulo: 'Titulo #2' },
-        { id: 3, titulo: 'Titulo #3' },
-        { id: 4, titulo: 'Titulo #4' }
-      ]
+      articulos: []
     }
+  },
+  async created () {
+    const res = await this.$axios.$get('https://jsonplaceholder.typicode.com/posts?_limit=10')
+    this.articulos = res
   }
 }
 </script>
