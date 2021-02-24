@@ -12,7 +12,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+  head: {
+    title: 'Esta es mi página de inicio',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Esta es la pagina de inicio' }
+    ]
+  }
+}
 </script>
 
 <style>
