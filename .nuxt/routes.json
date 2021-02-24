@@ -1,0 +1,30 @@
+[
+  {
+    "name": "blog",
+    "path": "/blog",
+    "component": "/home/josepem/PROJECTS/vuejs/CLI/nuxtjs/pages/blog/index.vue",
+    "chunkName": "pages/blog/index",
+    "_name": "_1d350e6c"
+  },
+  {
+    "name": "nosotros",
+    "path": "/nosotros",
+    "component": "/home/josepem/PROJECTS/vuejs/CLI/nuxtjs/pages/nosotros.vue",
+    "chunkName": "pages/nosotros",
+    "_name": "_d1227974"
+  },
+  {
+    "name": "blog-id",
+    "path": "/blog/:id",
+    "component": "/home/josepem/PROJECTS/vuejs/CLI/nuxtjs/pages/blog/_id.vue",
+    "chunkName": "pages/blog/_id",
+    "_name": "_114bbbd4"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/home/josepem/PROJECTS/vuejs/CLI/nuxtjs/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_6bdfa6db"
+  }
+]
