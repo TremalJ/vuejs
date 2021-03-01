@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  async asyncData ({ $axios, isDev, route, store, env, params, query, req, res, redirect, error }) {
+  async asyncData ({ $axios, params }) {
     try {
       const res = await $axios.$get('https://jsonplaceholder.typicode.com/posts/' + params.id)
       const articulo = res

@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-3">
         <div v-for="(item, index) in articulos" :key="index">
-          <div class="card-body">
+          <v-card>
             <nuxt-link :to="`/blog/${item.id}`">
               <h1>
                 {{ item.title }}
@@ -12,7 +12,7 @@
             <p>
               {{ item.body }}
             </p>
-          </div>
+          </v-card>
         </div>
       </div>
     </div>
